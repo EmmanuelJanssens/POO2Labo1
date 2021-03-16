@@ -5,6 +5,6 @@
 
 class Operation{
 public:
-    virtual int execute(int op1, int op2) = 0;
+    virtual int execute(int op1, int op2) const = 0;
 };
 #endif

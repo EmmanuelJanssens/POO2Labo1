@@ -1,3 +1,9 @@
+/**
+ * @authors Chhen Rosalie, Janssens Emmanuel
+ * 
+ * This class represents a basic matrix and all
+ * simple operation that can be done on it 
+ * */
 #ifndef MATRIX_H
 #define MATRIX_H
 
@@ -23,6 +29,7 @@ class Matrix
      * **/
     Matrix& operator=(const Matrix& m2);
 
+    void Init(bool zero = false);
 
     /**
      * Operation that is the root of every addition in our application
@@ -30,7 +37,7 @@ class Matrix
      * @param m1 first operand
      * @param m2 second operand
      * **/
-    friend Matrix operator+(const Matrix& m1, const Matrix& m2);
+    friend Matrix operator+(const Matrix& m1, const Matrix& m2) ;
 
     /**
      * Operation that is the root of every substraction in our application
@@ -64,9 +71,28 @@ class Matrix
      * */
     friend std::ostream& operator<<(std::ostream& out, const Matrix& mat);
 
-    //operator(to self) overload
+    /**
+     * Since the operation is done to one Self it is
+     * usefull to return a reference to the current matrix
+     * 
+     * @param toAdd matrix to be added
+     * */
     Matrix& operator +=(const Matrix& toAdd);
+
+    /**
+     * Since the operation is done to one Self it is
+     * usefull to return a reference to the current matrix
+     * 
+     * @param toSubb matrix to be added
+     * */
     Matrix& operator -=(const Matrix& toSub);
+
+    /**
+     * Since the operation is done to one Self it is
+     * usefull to return a reference to the current matrix
+     * 
+     * @param toMult matrix to be added
+     * */
     Matrix& operator *=(const Matrix& toMult);
 
     /** Return result by value */
@@ -86,7 +112,6 @@ class Matrix
 
     private:
     int CreateRandomValue();
-    void Init(bool zero = false);
     /** Wich operation should be executed */
     static Matrix Calculate(const Matrix& m1, const Matrix& m2,Operation* op);
 

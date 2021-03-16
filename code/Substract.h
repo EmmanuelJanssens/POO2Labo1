@@ -12,7 +12,7 @@ class Substract :public Operation
         ~Substract() 
         { }
 
-        int execute(int op1, int op2) override
+        int execute(int op1, int op2) const override
         {
             return op1 - op2;
         }

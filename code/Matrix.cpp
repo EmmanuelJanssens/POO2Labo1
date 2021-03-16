@@ -3,7 +3,6 @@
 Matrix::Matrix(unsigned i, unsigned j, unsigned mod)
     : _size_i(i),_size_j(j),_mod(mod)
 {
-    Init(false);
 }
 
 Matrix::Matrix(const Matrix& copy)
@@ -92,6 +91,9 @@ Matrix Matrix::Calculate(const Matrix& m1, const Matrix& m2, Operation * op)
     int op1 = 0; // operand from m1
     int op2 = 0; // operand from m2
 
+    if(op == nullptr)
+        throw std::runtime_error("Operation is not declared");
+
     for(int i =0; i < temp->_size_i; i++)
     {
         for(int j = 0; j < temp->_size_j; j++)
@@ -149,7 +151,7 @@ Matrix Matrix::AddRetByVal(const Matrix& m1, const Matrix& m2)
 }
 Matrix* Matrix::AddRetByPoint(const Matrix& m1, const Matrix& m2)
 {
-    return  new Matrix(m1+m2);
+    return new Matrix(m1+m2);
 }
 
 
