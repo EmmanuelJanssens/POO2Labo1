@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string.h>
+#include <time.h>
+
 #include "Matrix.h"
-#include "Multiply.h"
 using namespace std;
 
 bool IsNumber(char c[]);
@@ -12,53 +13,25 @@ int main(int argc, char *argv[])
 {
 
     srand(time(0));
-    Matrix *first = new Matrix();
-    Matrix *second = new Matrix();
+
+    if(argc != 6)
+    {
+        throw runtime_error("Invalid numbers of arguments (must be 6)");
+    }
+
+    for(int i= 1; i < argc; i++)
+    {
+        if(!IsNumber(argv[i]))
+        {
+            throw runtime_error("All entries must be numbers");
+        }
+    }
+
+    Matrix *first = new Matrix(atoi(argv[1]), atoi(argv[2]), atoi(argv[5]));
+    Matrix *second = new Matrix(atoi(argv[3]), atoi(argv[4]), atoi(argv[5]));
     Matrix *ptr_result = nullptr;
 
-    
-
-    if(argc == 1)
-    {
-        first->Generate();
-        second->Generate();
-    }
-    else
-    {
-        if(argc > 6)
-        {
-            delete first;
-            delete second;
-            if(ptr_result != nullptr)
-                delete ptr_result;
-            
-            throw runtime_error("You entered too many arguments (Maximum is 7)");
-        }
-
-        for(int i= 1; i < argc; i++)
-        {
-            if(!IsNumber(argv[i]))
-            {
-                delete first;
-                delete second;
-                if(ptr_result != nullptr)
-                    delete ptr_result;
-                throw runtime_error("All entries must be numbers");
-            }
-        }
-        
-        first->SetSizeI(atoi(argv[1]));
-        first->SetSizeJ(atoi(argv[2]));
-        first->SetMod(atoi(argv[5]));
-        first->Init(false);
-
-        second->SetSizeI(atoi(argv[3]));
-        second->SetSizeJ(atoi(argv[4]));
-        second->SetMod(atoi(argv[5]));
-        second->Init();
-
-    }
-    cout<<"The Modulus is " <<second->GetMod()<<endl<<endl; 
+    cout<<"The Modulus is " << _argv[4] <<endl<<endl;
     cout<<"one\n";
     cout<<*first<<endl;  
     cout<<"two\n";  

@@ -11,32 +11,14 @@ class Matrix
 {
     public:
 
-    /** No parameter contructor*/
-    Matrix();
+    /** constructor */
+    Matrix(unsigned size_i, unsigned size_j, unsigned mod);
     /** Copy contructor  */
     Matrix( const Matrix& mat );
     /** Destructor */
     ~Matrix();
 
-    Matrix(int i, int j, int mod = 5);
-
-
-
-    /** Setters */    
-    void SetSizeI(int i){_size_i = i;}
-    void SetSizeJ(int j){_size_j = j;}
-    void SetMod(int mod){_mod = mod;}
-
-    /** Getters */
-    int GetSizeJ() const {return _size_j;}
-    int GetSizeI() const {return _size_i;}
-    int GetMod() const{return _mod;}
-
-    int **GetValues() const;
-
-
     void operator=(const Matrix& m2);
-
 
     /** Return result by value */
     static Matrix AddRetByVal(const Matrix& m1, const Matrix& m2);
@@ -63,7 +45,6 @@ class Matrix
     void operator -=(const Matrix& toSub);
     void operator *=(const Matrix& toMult);
 
-    void Generate();
     void Init(bool zero = false);
 
     /** Input data for the current matrix*/
@@ -76,13 +57,14 @@ class Matrix
     /** Wich operation should be executed */
     static Matrix Calculate(const Matrix& m1, const Matrix& m2,Operation* op);
 
-    int CreateRandeomValue();
+    int CreateRandomValue();
 
-    
+    // Content of matrix
     int **_values;
-    //index
-    int _size_i;
-    int _size_j;
+
+    // Matrix i x j, i rows and j columns
+    unsigned _size_i;
+    unsigned _size_j;
 
     int _mod;
 };
@@ -117,8 +99,24 @@ inline Matrix operator*(const Matrix& m1, const Matrix& m2)
 {
     return Matrix::Calculate(m1,m2,new Multiply());
 }
+
+// Correct negativ values
 inline Matrix operator-(const Matrix& m1, const Matrix& m2)
 {
-    return Matrix::Calculate(m1,m2,new Substract());
+    Matrix result = Matrix::Calculate(m1,m2,new Substract());
+
+    // -1 mod 5 = 4
+    for(int i = 0; i < result. _size_i; ++i)
+    {
+        for(int j = 0; j < result._size_j; ++j)
+        {
+            if(result._values[i][j] < 0)
+            {
+                result._values[i][j] += result._mod;
+            }
+        }
+    }
+
+    return result;
 }
 #endif
