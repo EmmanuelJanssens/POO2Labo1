@@ -7,7 +7,7 @@ using namespace std;
 bool IsNumber(char c[]);
 
 // this is a test
-//N1 M1 N2 M2 MOD
+// omg another test!!!
 int main(int argc, char *argv[])
 {
 
