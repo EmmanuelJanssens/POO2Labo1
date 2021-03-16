@@ -1,9 +1,16 @@
+/**
+ * @authors Chhen Rosalie, Janssens Emmanuel
+ * File written in the scope of practical work
+ * for the POO2 Cursus at HEIG-VD
+ * */
 #ifndef SUBSTRACT_H
 #define SUBSTRACT_H
 
 #include "Operation.h"
 
-
+/**
+ * Substract operation
+ * */
 class Substract :public Operation
 {
     public:

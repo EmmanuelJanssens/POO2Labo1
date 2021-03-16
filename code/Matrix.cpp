@@ -1,3 +1,8 @@
+/**
+ * @authors Chhen Rosalie, Janssens Emmanuel
+ * File written in the scope of practical work
+ * for the POO2 Cursus at HEIG-VD
+ * */
 #include "Matrix.h"
 
 Matrix::Matrix(unsigned i, unsigned j, unsigned mod)
@@ -85,6 +90,12 @@ void Matrix::Init(bool zero)
 
 Matrix Matrix::Calculate(const Matrix& m1, const Matrix& m2, Operation * op)
 {
+
+    if(m1._values == nullptr || m2._values == nullptr)
+        throw new std::runtime_error("Matrix values where not initialized");
+    if(m1._mod != m2._mod)
+        throw new std::invalid_argument("Matrix modulo not compatible");
+
     Matrix *temp = new Matrix(std::max(m1._size_i, m2._size_i), std::max(m1._size_j, m2._size_j), m1._mod);
     temp->Init(true);  // fill this matrix with 0
 
@@ -136,10 +147,7 @@ int Matrix::CreateRandomValue()
 
 
 
-void Matrix::AddSelf(const Matrix& toAdd)
-{
-    *this += toAdd;
-}
+
 Matrix& Matrix::operator+=(const Matrix& toAdd)
 {   
     *this = *this + toAdd;
@@ -155,10 +163,7 @@ Matrix* Matrix::AddRetByPoint(const Matrix& m1, const Matrix& m2)
 }
 
 
-void Matrix::SubSelf(const Matrix& toSubb)
-{
-    *this -= toSubb;
-}
+
 Matrix& Matrix::operator-=(const Matrix& toAdd)
 {   
     *this = *this - toAdd;
@@ -173,10 +178,7 @@ Matrix* Matrix::SubRetByPoint(const Matrix& m1, const Matrix& m2)
     return  new Matrix(m1-m2);
 }
 
-void Matrix::MultSelf(const Matrix& toMult)
-{
-    *this *= toMult;
-}
+
 Matrix& Matrix::operator*=(const Matrix& toMult)
 {   
     *this = *this * toMult;

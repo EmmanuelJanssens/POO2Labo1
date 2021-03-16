@@ -1,3 +1,8 @@
+/**
+ * @authors Chhen Rosalie, Janssens Emmanuel
+ * File written in the scope of practical work
+ * for the POO2 Cursus at HEIG-VD
+ * */
 #include <iostream>
 #include <string.h>
 #include <time.h>
@@ -31,7 +36,7 @@ int main(int argc, char *argv[])
 
     first->Init(false);
     second->Init(false);
-    
+
     cout<<"The Modulus is " << argv[4] <<endl<<endl;
     cout<<"one\n";
     cout<<*first<<endl;  

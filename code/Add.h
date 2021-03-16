@@ -1,9 +1,16 @@
+/**
+ * @authors Chhen Rosalie, Janssens Emmanuel
+ * File written in the scope of practical work
+ * for the POO2 Cursus at HEIG-VD
+ * */
 #ifndef ADD_H
 #define ADD_H
 
 #include "Operation.h"
 
-
+/**
+ * Addition operation
+ * */
 class Add : public Operation
 {
     public:
