@@ -45,7 +45,7 @@ Matrix::~Matrix()
 
 }
 
-void Matrix::operator=(const Matrix& copy)
+Matrix& Matrix::operator=(const Matrix& copy)
 {
     this->_size_i = copy._size_i;
     this->_size_j = copy._size_j;
@@ -62,19 +62,12 @@ void Matrix::operator=(const Matrix& copy)
             _values[i][j] = copy._values[i][j];
         }
     }
+
+    return *this;
 }
 
 void Matrix::Init(bool zero)
 {
-    //initialize array pointer
-    /**
-        {
-            {1,2,3,4}, 
-            {1,2,3,4},
-            {1,2,3,4} 
-        }
-    **/
-
     _values =  new int*[_size_i];
     for(int i= 0; i < _size_i; i++)
     {
@@ -143,49 +136,53 @@ int Matrix::CreateRandomValue()
 
 void Matrix::AddSelf(const Matrix& toAdd)
 {
-    *this = *this + toAdd;
+    *this += toAdd;
 }
-void Matrix::operator+=(const Matrix& toAdd)
+Matrix& Matrix::operator+=(const Matrix& toAdd)
 {   
-    AddSelf(toAdd);
+    *this = *this + toAdd;
+    return *this;
 } 
 Matrix Matrix::AddRetByVal(const Matrix& m1, const Matrix& m2)
 {
-    return Matrix::Calculate(m1,m2,new Add());
+    return m1 + m2;
 }
 Matrix* Matrix::AddRetByPoint(const Matrix& m1, const Matrix& m2)
 {
     return  new Matrix(m1+m2);
 }
 
-void Matrix::SubSelf(const Matrix& toAdd)
+
+void Matrix::SubSelf(const Matrix& toSubb)
 {
-    *this = *this - toAdd; 
+    *this -= toSubb;
 }
-void Matrix::operator-=(const Matrix& toAdd)
+Matrix& Matrix::operator-=(const Matrix& toAdd)
 {   
-    SubSelf(toAdd);
+    *this = *this - toAdd;
+    return *this;
 } 
 Matrix Matrix::SubRetByVal(const Matrix& m1, const Matrix& m2)
 {
-    return Matrix::Calculate(m1,m2,new Substract());
+    return m1-m2;
 }
 Matrix* Matrix::SubRetByPoint(const Matrix& m1, const Matrix& m2)
 {
     return  new Matrix(m1-m2);
 }
 
-void Matrix::MultSelf(const Matrix& toAdd)
+void Matrix::MultSelf(const Matrix& toMult)
 {
-    *this = *this * toAdd;
+    *this *= toMult;
 }
-void Matrix::operator*=(const Matrix& toAdd)
+Matrix& Matrix::operator*=(const Matrix& toMult)
 {   
-    MultSelf(toAdd);
+    *this = *this * toMult;
+    return *this;
 } 
 Matrix Matrix::MultRetByVal(const Matrix& m1, const Matrix& m2)
 {
-    return Matrix::Calculate(m1,m2,new Multiply());
+    return m1 * m2;
 }
 Matrix* Matrix::MultRetByPoint(const Matrix& m1, const Matrix& m2)
 {

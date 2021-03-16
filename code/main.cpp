@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     Matrix *second = new Matrix(atoi(argv[3]), atoi(argv[4]), atoi(argv[5]));
     Matrix *ptr_result = nullptr;
 
-    cout<<"The Modulus is " << _argv[4] <<endl<<endl;
+    cout<<"The Modulus is " << argv[4] <<endl<<endl;
     cout<<"one\n";
     cout<<*first<<endl;  
     cout<<"two\n";  

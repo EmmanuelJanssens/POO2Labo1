@@ -18,7 +18,56 @@ class Matrix
     /** Destructor */
     ~Matrix();
 
-    void operator=(const Matrix& m2);
+    /** 
+     * Copy operator
+     * **/
+    Matrix& operator=(const Matrix& m2);
+
+
+    /**
+     * Operation that is the root of every addition in our application
+     * 
+     * @param m1 first operand
+     * @param m2 second operand
+     * **/
+    friend Matrix operator+(const Matrix& m1, const Matrix& m2);
+
+    /**
+     * Operation that is the root of every substraction in our application
+     * 
+     * @param m1 first operand
+     * @param m2 second operand
+     * **/
+    friend Matrix operator-(const Matrix& m1, const Matrix& m2);
+
+    /**
+     * Operation that is the root of every Multiplication in our application
+     * 
+     * @param m1 first operand
+     * @param m2 second operand
+     * **/
+    friend Matrix operator*(const Matrix& m1, const Matrix& m2);
+
+    /** 
+     * Input data for the current matrix
+     * 
+     * @param in input stream
+     * @param mat matrix to be updated
+     * */
+    friend std::istream& operator>>(std::istream& in, Matrix& mat);
+
+    /** 
+     * Output data for a specified matrix 
+     * 
+     * @param out output stream
+     * @param mat matrix to be written
+     * */
+    friend std::ostream& operator<<(std::ostream& out, const Matrix& mat);
+
+    //operator(to self) overload
+    Matrix& operator +=(const Matrix& toAdd);
+    Matrix& operator -=(const Matrix& toSub);
+    Matrix& operator *=(const Matrix& toMult);
 
     /** Return result by value */
     static Matrix AddRetByVal(const Matrix& m1, const Matrix& m2);
@@ -30,34 +79,16 @@ class Matrix
     static Matrix* MultRetByPoint(const Matrix& m1, const Matrix& m2);
     static Matrix* SubRetByPoint(const Matrix& m1, const Matrix& m2);  
 
-    /** Overload operators */
-    friend Matrix operator+(const Matrix& m1, const Matrix& m2);
-    friend Matrix operator-(const Matrix& m1, const Matrix& m2);
-    friend Matrix operator*(const Matrix& m1, const Matrix& m2);
-
     //Operations On Self
     void AddSelf(const Matrix& toAdd);
     void MultSelf(const Matrix& toMult);
     void SubSelf(const Matrix& toSub);
 
-    //operator(to self) overload
-    void operator +=(const Matrix& toAdd);
-    void operator -=(const Matrix& toSub);
-    void operator *=(const Matrix& toMult);
-
-    void Init(bool zero = false);
-
-    /** Input data for the current matrix*/
-    friend std::istream& operator>>(std::istream& in, Matrix& mat);
-    /** Output data for a specified matrix */
-    friend std::ostream& operator<<(std::ostream& out, const Matrix& mat);
-
     private:
-    
+    int CreateRandomValue();
+    void Init(bool zero = false);
     /** Wich operation should be executed */
     static Matrix Calculate(const Matrix& m1, const Matrix& m2,Operation* op);
-
-    int CreateRandomValue();
 
     // Content of matrix
     int **_values;
@@ -68,6 +99,8 @@ class Matrix
 
     int _mod;
 };
+
+
 inline std::ostream& operator<<(std::ostream& out, const Matrix& mat)
 {
 
@@ -77,8 +110,7 @@ inline std::ostream& operator<<(std::ostream& out, const Matrix& mat)
         {
             for(int j = 0; j < mat._size_j; j++)
             {
-                if(mat._values[j] != nullptr)
-                    out<<mat._values[i][j]<<" ";
+                out<<mat._values[i][j]<<" ";
             }
             out<<std::endl;
         }
