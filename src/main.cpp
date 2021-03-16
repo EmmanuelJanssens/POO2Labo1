@@ -1,4 +1,4 @@
-#include "Matrix.cpp"
+#include "Matrix.hpp"
 
 #include <iostream>
 #include "time.h"
@@ -10,8 +10,9 @@ int main(int argc, char *argv[]){
 
     srand(time(0));
 
-    // Arguments should be : n1 m1 n2 m2 modulus
-    if(argc > 6){
+    // Arguments should be exactly : n1 m1 n2 m2 modulus
+    // Otherwise, behaviour is not defined
+    if(argc != 6){
         throw std::runtime_error("Numbers of input invalid");
     }
 
