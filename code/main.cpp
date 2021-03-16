@@ -7,8 +7,6 @@ using namespace std;
 
 bool IsNumber(char c[]);
 
-// this is a test
-// omg another test!!!
 int main(int argc, char *argv[])
 {
 
@@ -16,7 +14,7 @@ int main(int argc, char *argv[])
 
     if(argc != 6)
     {
-        throw runtime_error("Invalid numbers of arguments (must be 6)");
+        throw runtime_error("Invalid numbers of arguments (should enter : N1 M1 N2 M2 MOD)");
     }
 
     for(int i= 1; i < argc; i++)
