@@ -1,7 +1,8 @@
 /**
+ * @file Matrix.h
  * @authors Chhen Rosalie, Janssens Emmanuel
- * File written in the scope of practical work
- * for the POO2 Cursus at HEIG-VD
+ * @brief This class represents a basic matrix and all
+ * simple operation that can be done on it 
  * */
 #ifndef MATRIX_H
 #define MATRIX_H
@@ -11,10 +12,6 @@
 #include "Multiply.h"
 #include "Substract.h"
 
-/** 
- * This class represents a basic matrix and all
- * simple operation that can be done on it 
- * */
 class Matrix
 {
     public:
@@ -25,7 +22,7 @@ class Matrix
      * @param size_j number of collumns of the matrix
      * @param mod modulus of the matrix
      */
-    Matrix(unsigned size_i, unsigned size_j, unsigned mod);
+    Matrix(unsigned size_i, unsigned size_j, unsigned mod, bool zero = false);
     /** 
      * Copy contructor 
      * @param mat matrix to be copied

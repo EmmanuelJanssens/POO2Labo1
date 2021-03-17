@@ -1,7 +1,7 @@
 /**
+ * @file main.h
  * @authors Chhen Rosalie, Janssens Emmanuel
- * File written in the scope of practical work
- * for the POO2 Cursus at HEIG-VD
+ * @brief Contains main program that tests our matrix implementation
  * */
 #include <iostream>
 #include <string.h>
@@ -35,8 +35,6 @@ int main(int argc, char *argv[])
     Matrix *second = new Matrix(atoi(argv[3]), atoi(argv[4]), atoi(argv[5]));
     Matrix *ptr_result = nullptr;
 
-    first->Init(false);
-    second->Init(false);
 
     cout<<"The Modulus is " << argv[4] <<endl<<endl;
     cout<<"one\n";
@@ -94,7 +92,16 @@ int main(int argc, char *argv[])
     test.SubTest();
     test.MultiplyTest();
     test.CopyConstructorTest();
-    // test.DifferentModTest();
+
+    try
+    {
+        test.DifferentModTest(); 
+    }
+    catch(const std::invalid_argument& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
 
     return 0;
 }

@@ -1,13 +1,15 @@
 /**
+ * @file Matrix.cpp
  * @authors Chhen Rosalie, Janssens Emmanuel
- * File written in the scope of practical work
- * for the POO2 Cursus at HEIG-VD
+ * @brief This class represents a basic matrix and all
+ * simple operation that can be done on it 
  * */
 #include "Matrix.h"
 
-Matrix::Matrix(unsigned i, unsigned j, unsigned mod)
+Matrix::Matrix(unsigned i, unsigned j, unsigned mod, bool zero)
     : _size_i(i),_size_j(j),_mod(mod)
 {
+    Init(zero);
 }
 
 Matrix::Matrix(const Matrix& copy)
@@ -92,12 +94,11 @@ Matrix Matrix::Calculate(const Matrix& m1, const Matrix& m2, Operation * op)
 {
 
     if(m1._values == nullptr || m2._values == nullptr)
-        throw new std::runtime_error("Matrix values where not initialized");
+        throw  std::runtime_error("Matrix values where not initialized");
     if(m1._mod != m2._mod)
-        throw new std::invalid_argument("Matrix modulo not compatible");
+        throw  std::invalid_argument("Matrix modulo not compatible");
 
-    Matrix *temp = new Matrix(std::max(m1._size_i, m2._size_i), std::max(m1._size_j, m2._size_j), m1._mod);
-    temp->Init(true);  // fill this matrix with 0
+    Matrix *temp = new Matrix(std::max(m1._size_i, m2._size_i), std::max(m1._size_j, m2._size_j), m1._mod,true);
 
     int op1 = 0; // operand from m1
     int op2 = 0; // operand from m2
@@ -141,7 +142,7 @@ Matrix Matrix::Calculate(const Matrix& m1, const Matrix& m2, Operation * op)
 
 int Matrix::CreateRandomValue()
 {
-    int random = 1+std::rand() % _mod;
+    int random = rand() / (RAND_MAX + 1.0) * _mod;
     return random;
 }
 

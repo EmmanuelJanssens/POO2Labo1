@@ -1,3 +1,8 @@
+/**
+ * @file Test.h
+ * @authors Chhen Rosalie, Janssens Emmanuel
+ * @brief Tests our implementation of the matrix
+ * */
 #ifndef POO2LABO1_TEST_H
 #define POO2LABO1_TEST_H
 
@@ -40,8 +45,7 @@ public:
 
             Matrix m1(validArgs[i][0], validArgs[i][1], validArgs[i][4]);
             Matrix m2(validArgs[i][2], validArgs[i][3], validArgs[i][4]);
-            m1.Init(false);
-            m2.Init(false);
+
 
             cout << "The Modulus is " << validArgs[i][4] << endl << endl;
             cout << "m1 :\n";
@@ -52,6 +56,9 @@ public:
             cout << "m1 + m2 (by pointer)\n";
             Matrix* ptr_result = Matrix::AddRetByPoint(m1, m2);
             cout << *(ptr_result) << endl;
+            
+            delete ptr_result;
+            ptr_result = nullptr;
 
             cout << "m1 + m2 (by value) operator+\n";
             cout << m1+m2 << endl;
@@ -81,8 +88,7 @@ public:
 
             Matrix m1(validArgs[i][0], validArgs[i][1], validArgs[i][4]);
             Matrix m2(validArgs[i][2], validArgs[i][3], validArgs[i][4]);
-            m1.Init(false);
-            m2.Init(false);
+
 
             cout << "The Modulus is " << validArgs[i][4] << endl << endl;
             cout << "m1 :\n";
@@ -93,6 +99,8 @@ public:
             cout << "m1 - m2 (by pointer)\n";
             Matrix* ptr_result = Matrix::SubRetByPoint(m1, m2);
             cout << *(ptr_result) << endl;
+            delete ptr_result;
+            ptr_result = nullptr;
 
             cout << "m1 - m2 (by value) operator-\n";
             cout << m1-m2 << endl;
@@ -122,8 +130,7 @@ public:
 
             Matrix m1(validArgs[i][0], validArgs[i][1], validArgs[i][4]);
             Matrix m2(validArgs[i][2], validArgs[i][3], validArgs[i][4]);
-            m1.Init(false);
-            m2.Init(false);
+
 
             cout << "The Modulus is " << validArgs[i][4] << endl << endl;
             cout << "m1 :\n";
@@ -134,6 +141,8 @@ public:
             cout << "m1 * m2 (by pointer)\n";
             Matrix* ptr_result = Matrix::MultRetByPoint(m1, m2);
             cout << *(ptr_result) << endl;
+            delete ptr_result;
+            ptr_result = nullptr;
 
             cout << "m1 * m2 (by value) operator*\n";
             cout << m1*m2 << endl;
@@ -153,13 +162,10 @@ public:
     void CopyConstructorTest(){
 
         Matrix m1(2, 3, 4);
-        m1.Init(false);
 
         Matrix m2(4,5,6);
-        m2.Init(false);
 
         Matrix m3(3,4,3);
-        m3.Init(false);
 
         Matrix copy1(m1);
         Matrix copy2(m2);
@@ -189,8 +195,7 @@ public:
 
         Matrix m1(2, 3, 4);
         Matrix m2(2, 3, 5);
-        m1.Init(false);
-        m2.Init(false);
+
 
         // throw an exception
         Matrix* ptr_result = Matrix::MultRetByPoint(m1, m2);
