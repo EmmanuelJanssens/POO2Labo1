@@ -8,6 +8,7 @@
 #include <time.h>
 
 #include "Matrix.h"
+#include "Test.h"
 using namespace std;
 
 bool IsNumber(char c[]);
@@ -81,6 +82,20 @@ int main(int argc, char *argv[])
     second = nullptr;
     if(ptr_result != nullptr)
         delete ptr_result;
+
+
+    // --- TESTS
+
+    cout << "--- TESTS ---" << endl;
+
+    Test test;
+
+    test.AddTest();
+    test.SubTest();
+    test.MultiplyTest();
+    test.CopyConstructorTest();
+    // test.DifferentModTest();
+
     return 0;
 }
 
